@@ -5,6 +5,7 @@ FROM ubuntu:16.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
+RUN apt-get update
 RUN apt-get install -y wget
 # https://dotnet.microsoft.com/download/linux-package-manager/ubuntu16-04/sdk-current
 RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
@@ -14,8 +15,7 @@ RUN apt-get install apt-transport-https
 RUN apt-get update
 RUN apt-get install dotnet-sdk-2.2
 
-RUN apt-get update \
-&& apt-get install -y --no-install-recommends \
+RUN apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
         jq \
